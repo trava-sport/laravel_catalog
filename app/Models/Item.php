@@ -19,13 +19,10 @@ class Item extends Model
 
         $sizes = [];
         $fabrics = [];
-        //dd($request->priceFrom);
         $razmer = $request->razmer ? explode(',', $request->razmer) : '';
         $tkan = $request->tkan ? explode(',', $request->tkan) : '';
         $priceFrom = $request->priceFrom ? $request->priceFrom : '0';
         $priceTo = $request->priceTo ? $request->priceTo : '2000';
-        //dd($razmer);
-        //$price = explode(',', $request->price);
         $size_id =  !empty($razmer) ? Size::whereIn('code', $razmer)->get() : '';
         $fabric_id = !empty($tkan) ? Fabric::whereIn('code', $tkan)->get() : '';
         
@@ -40,15 +37,12 @@ class Item extends Model
                 $fabrics[] = $fabric->id;
             }
         }
-        //dd($priceFrom);
 
         if (empty($sizes) && !empty($fabrics)) {
-            //dd($size_id);
             return  Item::whereIn('fabric_id', $fabrics)
                 ->where([['price', '>=', $priceFrom], ['price', '<=', $priceTo]])->get();
         }
         if (empty($fabrics) && !empty($sizes)) {
-            //dd($size_id);
             return  Item::whereIn('size_id', $sizes)
                 ->where([['price', '>=', $priceFrom], ['price', '<=', $priceTo]])->get();
         }
