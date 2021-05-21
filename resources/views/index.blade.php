@@ -79,7 +79,7 @@
         						<div class="price">
         							<input type="text" index="0" class="price-input ui-slider-min" value="0">
         							<span class="price-sep"></span>
-        							<input type="text" index="1" class="price-input ui-slider-max" value="<?=$_COOKIE['priceTo']?>">
+        							<input type="text" index="1" class="price-input ui-slider-max" value="2000">
         						</div>
         						<div class="ui-slider"></div>
         					</div>
